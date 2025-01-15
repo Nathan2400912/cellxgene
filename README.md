@@ -39,6 +39,7 @@ write.csv(pca_matrix, "example_pca_matrix.csv")
 # Adding them back into Anndata object
 pca_matrix = pd.read_csv("example_pca_matrix.csv", index_col=0)  
 example.obsm['X_pca'] = pca_matrix
+```
 
 Other than that, there are many requirements of the dataset laid out by cellxgene. Here is the website for the requirements:
 [Cellxgene Requirements](https://cellxgene.cziscience.com/docs/032__Contribute%20and%20Publish%20Data)
