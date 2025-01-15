@@ -78,7 +78,6 @@ cellxgene-schema validate example_object_updated.h5ad
 1. **Seurat_conversion.rmd**: R Markdown file documenting Seurat-to-AnnData conversion steps.
 2. **BronchialCellxgene.ipynb**: Jupyter notebook detailing modifications to the bronchial AnnData object.
 3. **NasalCellxgenecopy.ipynb**: Jupyter notebook detailing modifications to the nasal AnnData object.
-4. **Components/**: Directory containing extracted PCA and UMAP matrices, metadata, and other components.
 
 ## Additional Resources
 - **Study DOI**: 10.1038/s41598-022-17832-6
