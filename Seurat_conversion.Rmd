@@ -1,0 +1,142 @@
+---
+title: "Bronc Conversion"
+output: html_document
+date: "2024-10-03"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Load Packages
+```{r}
+library(Seurat)
+library(dplyr)
+library(BiocManager)
+library(SingleCellExperiment)
+library(LoomExperiment)
+library(reticulate)
+library(sceasy)
+library(convert2anndata)
+library(anndata)
+library(SeuratData)
+library(SeuratDisk)
+```
+
+```{r}
+write_csv(genes_combined_fil, 'bronc1_ensembl.csv')
+```
+
+# Read in nose object
+```{r}
+nose <- readRDS("/Users/nathan/Desktop/Camplab/Cellxgene/CellxgeneCorrectNasal/nose_integrated_20200330_labeled.rds")
+```
+```{r}
+bronc <- readRDS("/Users/nathan/Desktop/Camplab/Cellxgene/Seurat_IDA_combined_3Metrics_20200928_final_labels.rds")
+```
+```{r}
+DimPlot(bronc, reduction = "umap", group.by = "celltype_final")
+```
+
+# Plot UMAP
+```{r}
+DimPlot(bronc1, reduction = "umap", group.by = "celltype_final")
+```
+
+# Inspect commands
+```{r}
+bronc@commands$FindNeighbors.integrated.pca
+```
+```{r}
+bronc@commands$RunPCA.integrated
+```
+```{r}
+bronc@commands$RunUMAP.integrated.pca
+```
+
+# Manually extracting nn and snn
+```{r}
+nn_df <- as.data.frame(as.matrix(bronc1@graphs$integrated_nn))
+snn_df <- as.data.frame(as.matrix(bronc1@graphs$integrated_snn))
+
+write.csv(nn_df, "nn_graph.csv", row.names = TRUE)
+write.csv(snn_df, "snn_graph.csv", row.names = TRUE)
+```
+
+# Manually extracting PCA
+```{r}
+# Extract PCA matrix (embedding) from Seurat
+pca1_matrix <- bronc1[["pca"]]@cell.embeddings
+
+# Optionally, save it as a CSV file
+write.csv(pca_matrix, "bronc1_pca_matrix.csv")
+
+```
+```{r}
+# Extract PCA feature loadings
+pca_loadings <- bronc1[["pca"]]@feature.loadings
+
+# Optionally, save the feature loadings as a CSV file
+write.csv(pca_loadings, "bronc1_pca_loadings.csv")
+
+```
+```{r}
+umap_matrix <- bronc1[["umap"]]@cell.embeddings
+write.csv(umap_matrix, "bronc1_umap_matrix.csv")
+```
+```{r}
+genes_combined_fil <- genes_combined_fil
+
+write_tsv(genes_combined_fil, 'bronc_ensembl.csv', rownames())
+```
+
+# Put cell types in metadata
+```{r}
+cell_idents <- Idents(nose)
+nose@meta.data$cell_type <- cell_idents
+nosemeta <<- nose@meta.data
+```
+# Change cell types to characters instead of factors
+```{r}
+nose@meta.data$cell_type <- as.character(nose@meta.data$cell_type)
+```
+```{r}
+DefaultAssay()
+```
+```{r}
+nose <- UpdateSeuratObject(nose)
+```
+
+# Convert to h5ad
+```{r}
+SaveH5Seurat(bronc1, filename = "CxG1_Seurat_IDA_combined_3Metrics_20200928_final_labels.h5Seurat")
+Convert("CxG1_Seurat_IDA_combined_3Metrics_20200928_final_labels.h5Seurat", dest = "h5ad")
+```
+
+# Change main assay
+```{r}
+DefaultAssay(bronc) <- "RNA"
+```
+
+# nn and snn matrices
+```{r}
+rawnose_nn <- nose@graphs$integrated_nn
+rawnose_snn <- nose@graphs$integrated_snn
+rawnn_matrix <- as(rawnose_nn, "dgCMatrix")
+rawsnn_matrix <- as(rawnose_snn, "dgCMatrix")
+writeMM(rawnn_matrix, "rawnasal_nn.mtx")
+writeMM(rawsnn_matrix, "rawnasal_snn.mtx")
+```
+
+
+# Read in bronchial object
+```{r}
+bronc <- readRDS("Seurat_IDA_combined_3Metrics_20200928_final_labels.rds")
+```
+# Convert integrated to h5ad
+```{r}
+SaveH5Seurat(bronc, filename = "Cellxgene_Bronchial_Seurat_IDA_combined_3Metrics_20200928_final_labels.h5Seurat")
+Convert("Cellxgene_Bronchial_Seurat_IDA_combined_3Metrics_20200928_final_labels.h5Seurat", dest = "h5ad")
+```
+
+
