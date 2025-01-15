@@ -60,7 +60,7 @@ adata.write("example_object_updated.h5ad")
 Other than that, there are many requirements laid out by cellxgene. [Here](https://cellxgene.cziscience.com/docs/032__Contribute%20and%20Publish%20Data) is the website for the requirements.
 To see how you can meet all these requirements, take a look at the uploaded Jupyter notebooks that contain the detailed steps of how I fulfilled the cellxgene requirements for both of the Anndata objects in this project. Note that the steps I took do not necessarily translate to other studies, this step will be highly dependent on what is contained in the original object, the steps taken in the notebook are specific to the study of interest. 
 
-3) Validating the final Anndata object
+### 3) Validating the final Anndata object
 Once the requirements in both objects have been fulfilled, the objects then can be validated to ensure proper documentation for upload. 
 ```
 git clone https://github.com/chanzuckerberg/single-cell-curation.git
