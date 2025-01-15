@@ -82,6 +82,7 @@ cellxgene-schema validate example_object_updated.h5ad
 ## Additional Resources
 - **Study DOI**: 10.1038/s41598-022-17832-6
 - **Cellxgene Documentation**: [Link](https://cellxgene.cziscience.com/docs/032__Contribute%20and%20Publish%20Data)
+- **Cellxgene Validation**: [Link](https://github.com/chanzuckerberg/single-cell-curation/tree/main)
 
 ## Citation
 Xu, K., Shi, X., Husted, C., et al. (2022). Smoking modulates different secretory subpopulations expressing SARS-CoV-2 entry genes in the nasal and bronchial airways. Scientific Reports, 12, 18168. https://doi.org/10.1038/s41598-022-17832-6.
