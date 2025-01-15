@@ -6,7 +6,7 @@ The project involves the conversion of two Seurat objects derived from the study
 
 **Smoking Modulates Different Secretory Subpopulations Expressing SARS-CoV-2 Entry Genes in the Nasal and Bronchial Airways** (Xu et al., 2022).
 
-The goal is to prepare these objects for publication in Cellxgene while ensuring compliance with repository requirements. The Seurat objects contain scRNA-seq data from nasal and bronchial brush samples collected from participants undergoing lung cancer screening.
+The goal is to prepare these objects for publication in Cellxgene while ensuring compliance with repository requirements. The Seurat objects contain scRNA-seq data from nasal and bronchial brush samples collected from participants undergoing lung cancer screening. Note that the objects are not included in this repository due to size contraints.
 
 ## Background
 The study investigates how smoking influences the expression of SARS-CoV-2 entry genes (ACE2, TMPRSS2, and CTSL) in different secretory cell populations of the nasal and bronchial airways. scRNA-seq data was generated from nasal and bronchial samples, revealing distinct cell populations and differential gene expression patterns linked to smoking status.
