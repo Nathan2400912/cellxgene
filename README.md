@@ -23,7 +23,7 @@ The Seurat objects used in this project represent these datasets:
 
 ## Workflow
 ### 1) Converting Seurat to Anndata
-There are many ways to convert a Seurat object into an Anndata object. However, the most convenient way I found to retain most of the information in the original object is first to convert the Seurat object into an h5Seurat object, then convert the corresponding h5Seurat object into an h5ad file. Here is an example:
+There are many ways to convert a Seurat object into an Anndata object. However, the most convenient way I found to retain most of the information in the original object is first to convert the Seurat object into an h5Seurat file, then convert the corresponding h5Seurat file into an h5ad file. Here is an example:
 ```
 # Load necessary libraries
 library(Seurat)
